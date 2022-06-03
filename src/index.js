@@ -6,6 +6,8 @@ const app = express();
 
 app.use('/static', express.static('static'));
 
+app.use(express.urlencoded({extended: false}));
+
 app.engine('hbs', handlebars.engine({
 
     extname: 'hbs'
@@ -13,8 +15,8 @@ app.engine('hbs', handlebars.engine({
 }));
 
 app.set('view engine', 'hbs');
-app.set('views', './src/views')
+app.set('views', './src/views');
 
-app.use(router)
+app.use(router);
 
-app.listen(5000, ()=>console.log('yes'))
+app.listen(5000, ()=>console.log('App is listening'));
