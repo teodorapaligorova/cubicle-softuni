@@ -4,6 +4,7 @@ const cubes = require('../db.json');
 
 
 exports.getOne = (cubeId) => cubes[cubeId];
+exports.getAll = () => cubes
 
 exports.save = (cube) => {
     cubes.push(cube);
