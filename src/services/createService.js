@@ -1,4 +1,3 @@
-const cubes = require('../db.json');
 const Cube = require('../models/Cube')
 
 
