@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const createService = require('../services/createService')
 
-router.get('/', (req,res)=>{
-    const cubes = createService.getAll()
+router.get('/', async(req,res)=>{
+    const cubes = await createService.getAll()
     res.render('index',{cubes});
 });
 

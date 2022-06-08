@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const cubeSchema = new mongoose.Schema({
-    _id: mongoose.Types.ObjectId,
     name: {
         type: String,
         required: true,
@@ -16,7 +15,7 @@ const cubeSchema = new mongoose.Schema({
         required: true,
 
     },
-    dificultyLevel: {
+    difficultyLevel: {
         type: Number,
         required: true,
         min: 1,

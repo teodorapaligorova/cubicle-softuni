@@ -1,15 +1,11 @@
-const fs = require('fs/promises');
-const path = require('path');
 const cubes = require('../db.json');
+const Cube = require('../models/Cube')
 
 
-exports.getOne = (cubeId) => cubes[cubeId];
-exports.getAll = () => cubes
+exports.getOne = (cubeId) => Cube.findById(cubeId);
+exports.getAll = async () =>{
+let cubes = await Cube.find().lean();
+return cubes
+} 
 
-exports.save = (cube) => {
-    cubes.push(cube);
-
-    let data = JSON.stringify(cubes, '', 4);
-
-    return fs.writeFile(path.resolve('src','db.json'), data)
-}
+exports.create = (cube) => Cube.create(cube);
