@@ -41,7 +41,7 @@ router.post('/:cubeId/attach-accessory', async (req,res) => {
 
     await createSevice.attachAccessory(req.params.cubeId, accessoryId)
 
-    res.redirect(`cube/details/${req.params.cubeId}`)
+    res.redirect(`/cube/details/${req.params.cubeId}`)
 });
 
 module.exports = router;
