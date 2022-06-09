@@ -9,14 +9,14 @@ const accessorySchema = new mongoose.Schema({
         type: String,
         required: true,
         validate: {
-            validator: /^http?/;
+            validator: /^http?/,
             message: 'Image url should be a link'
-        },
-        description: {
-            type: String,
-            maxlength: 100,
-            required: true
         }
+    },
+    description: {
+        type: String,
+        maxlength: 100,
+        required: true
     }
 });
 
