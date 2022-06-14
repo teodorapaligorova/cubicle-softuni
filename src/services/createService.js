@@ -3,8 +3,14 @@ const Cube = require('../models/Cube')
 
 
 exports.getOne = (cubeId) => Cube.findById(cubeId).populate('accessories');
-exports.getAll = async () =>{
-let cubes = await Cube.find().lean();
+exports.getAll = async (search = '', fromInput, toInput) =>{
+const from = Number(fromInput) || 0;
+const to = Number(toInput) || 6;
+
+let cubes = await Cube.find({name: { $regex: new RegExp(search, 'i')}})
+.where('difficultyLevel').lte(to).gte(from)
+.lean();
+
 return cubes
 } 
 
