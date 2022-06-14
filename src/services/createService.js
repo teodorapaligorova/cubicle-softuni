@@ -3,7 +3,7 @@ const Cube = require('../models/Cube')
 
 
 exports.getOne = (cubeId) => Cube.findById(cubeId).populate('accessories');
-exports.getAll = async (search = '', fromInput, toInput) =>{
+exports.getAll = async (search = '', fromInput, toInput) => {
 const from = Number(fromInput) || 0;
 const to = Number(toInput) || 6;
 
@@ -12,7 +12,7 @@ let cubes = await Cube.find({name: { $regex: new RegExp(search, 'i')}})
 .lean();
 
 return cubes
-} 
+}; 
 
 exports.create = (cube) => Cube.create(cube);
 
