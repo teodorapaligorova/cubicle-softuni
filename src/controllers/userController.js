@@ -29,7 +29,7 @@ router.post('/login', async(res,req) => {
    if(!loggedUser){
      return res.redirect('404')
    }
-
+   res.cookie('session', loggedUser)
    res.redirect('/')
 })
 module.exports = router;
