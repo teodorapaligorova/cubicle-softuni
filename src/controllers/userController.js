@@ -26,6 +26,10 @@ router.post('/login', async(res,req) => {
    
    let loggedUser = await userService.login(req.body);
 
+   if(!loggedUser){
+     return res.redirect('404')
+   }
+
    res.redirect('/')
 })
 module.exports = router;
