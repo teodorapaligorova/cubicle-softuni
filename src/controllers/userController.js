@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const userService = require('../services/userService')
+const userService = require('../services/userService');
+const {sessionName } = require('../config/constants');
 
 router.get('/register', (req,res) =>{
 
@@ -29,7 +30,7 @@ router.post('/login', async(res,req) => {
    if(!loggedUser){
      return res.redirect('404')
    }
-   res.cookie('session', loggedUser)
+   res.cookie(sessionName, loggedUser, { httpOnly: true })
    res.redirect('/')
 })
 module.exports = router;
