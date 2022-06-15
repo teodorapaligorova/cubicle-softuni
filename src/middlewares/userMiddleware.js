@@ -11,6 +11,7 @@ exports.user = async (req, res, next) => {
         try{
             let decodedToken = await jwtVerify(token, secret);
             req.user = decodedToken;
+            res.locals.user = decodedToken;
 
         }catch(err) {
             return res.redirect('/');

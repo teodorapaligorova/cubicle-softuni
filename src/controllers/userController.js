@@ -32,5 +32,10 @@ router.post('/login', async(res,req) => {
    }
    res.cookie(sessionName, loggedUser, { httpOnly: true })
    res.redirect('/')
+});
+
+router.get('/logout', (res, req) => {
+    res.clearCookie(sessionName);
+    res.redirect('/');
 })
 module.exports = router;
