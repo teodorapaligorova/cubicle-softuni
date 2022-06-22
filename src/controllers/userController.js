@@ -14,14 +14,13 @@ router.post('/register', async (req,res, next) => {
         next({message: 'Invald email'})
     }
 
-    let registeredUser = await userService.register(req.body)
-
-    if(registeredUser){
-        res.redirect('/user/login');
-    }else{
-        res.redirect('404')
+    try{
+      await userService.register(req.body);
+      res.redirect('/user/login');
+    }catch(error){
+        res.render('404', {error: error.message})
     }
-    
+        
 });
 
 router.get('/login', (req,res) => {

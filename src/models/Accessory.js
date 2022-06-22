@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const accessorySchema = new mongoose.Schema({
     name:{
         type: String,
-        required: true
+        required: true,
+        minlength: 5,
+        validate: /[a-zA-Z0-9 ]/
     },
     imageUrl: {
         type: String,
@@ -16,7 +18,9 @@ const accessorySchema = new mongoose.Schema({
     description: {
         type: String,
         maxlength: 100,
-        required: true
+        minlength: 20,
+        required: true,
+        validate: /[a-zA-Z0-9 ]/
     },
     cubes: [
     {
