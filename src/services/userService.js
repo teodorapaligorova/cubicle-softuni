@@ -31,7 +31,9 @@ exports.login = async ({username, password}) => {
    const isValid = await bcrypt.compare(password, user.password);
 
    if(!isValid){
-    return
+    throw {
+        message: 'Ivalid username or password'
+    }
    }
 
    let result = new Promise((resolve, reject) => {
