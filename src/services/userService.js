@@ -9,7 +9,9 @@ exports.register = async ({username, password, repeatPassword}) =>{
     try{
 
         if(password != repeatPassword){
-            throw
+            throw {
+                message: 'Password doesn`t match!'
+            }
         }
 
         let hashedPassword = await bcrypt.hash(password, saltRounds);
