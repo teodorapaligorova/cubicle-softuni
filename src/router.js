@@ -11,6 +11,7 @@ router.use('/', homeController);
 router.use('/cube', cubeController);
 router.use('/accessory', accessoryController);
 router.use('/user', userController);
+router.use('/about', homeController);
 router.use('*', (req,res) =>{
     res.render('404')
 });
