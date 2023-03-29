@@ -15,7 +15,6 @@
         <li><img class="logo" src="/static/images/logo.png"></li>
         <li><a href="/">Browse</a></li>
         <li><a href="/about">About</a></li>
-
         {{#if user}}
         <li><a href="/cube/create">Add a Cube</a></li>
         <li><a href="/accessory/createAccessory">Add Accessory</a></li>
@@ -27,9 +26,11 @@
       </ul>
     </header>
     
-    {{#if error}}
+    {{#if errors}}
   <div id="notifications">
-    <p id="notificatin-message">{{error}}</p>
+    {{#each errors}}
+    <p id="notification-message">{{msg}}</p>
+    {{/each}}
   </div>
     {{/if}}
 

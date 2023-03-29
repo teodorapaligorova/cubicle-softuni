@@ -21,5 +21,5 @@ initaliseDatabase()
     app.listen(5000, ()=>console.log('App is listening'));
 })
 .catch((err)=> {
-    console.log('Cannot connecto to DB', err);
+    console.log('Cannot connect to to DB', err);
 })
