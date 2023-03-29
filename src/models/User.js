@@ -1,22 +1,25 @@
+
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
 
     username: {
         type: String,
-        required: [true, 'Username is required!'], 
-        unique: true,
-        validate: /[a-zA-Z0-9]/,
-        minlength: 5
+        required: true, 
     },
     password: {
         type: String,
         required: true,
-        minlength: 8,
-        validate: /[a-zA-Z0-9]/,
-
     }
 
+});
+
+userSchema.index({username: 1}, {
+    unique: true,
+    collation: {
+        locale: 'en',
+        strength: 2
+    }
 });
 
 const User = mongoose.model('User', userSchema);
