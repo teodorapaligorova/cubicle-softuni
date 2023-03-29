@@ -22,20 +22,17 @@ exports.register = async ({username, password}) =>{
 exports.login = async ({username, password}) => {
 
 
-//try{
-
     let user = await User.findOne({username});
 
-    if(!user){
-        throw [{msg: 'Invalid username or password!'}];
+    if (!user) {
+      throw new Error("Incorrect username or password!");
     }
-  
-   const isValid = await bcrypt.compare(password, user.password);
 
-   if(!isValid){
-    throw [{msg: 'Invalid username or password!'}];
-    
-   }
+    const isValid = await bcrypt.compare(password, user.password);
+
+    if (!isValid) {
+      throw new Error("Incorrect username or password!");
+    }
 
    let result = new Promise((resolve, reject) => {
     jwt.sign({_id: user._id,  username: user.username}, secret, {expiresIn: '3d'},(err, token) =>{
@@ -49,7 +46,5 @@ exports.login = async ({username, password}) => {
 
  return result;
 
-// }catch(error){
-// console.log(error);
-// }
+
 }
