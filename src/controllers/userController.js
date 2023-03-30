@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const userService = require('../services/userService');
-const getErrorMessage = require('../utils/errorMapper')
+const { getErrorMessage } = require('../utils/errorMapper')
 const {sessionName } = require('../config/constants');
 const { body, validationResult } = require('express-validator');
 const usernameLength = 5;
@@ -38,7 +38,7 @@ router.post("/register",
       await userService.register(req.body);
       res.redirect("/user/login");
     } catch (error) {
-      res.locals.errors = error;
+      res.locals.errors = getErrorMessage(error);
       res.render("user/register", {title: "Sign in", field: { username: req.body.username }});
     }
   }

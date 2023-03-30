@@ -2,7 +2,7 @@ exports.getErrorMessage = (error) => {
 
     if (Array.isArray(error)) {
         return error;
-    } else if (error.name == 'MongoServerError') {
+    }else if (error.name == 'MongoServerError') {
         if (error.code == 11000) {
             return [{
                 msg: 'Username already exists'

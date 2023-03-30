@@ -8,6 +8,7 @@ exports.user = async (req, res, next) => {
     let token = req.cookies[sessionName];
 
     if(token){
+      
         try{
             let decodedToken = await jwtVerify(token, secret);
             req.user = decodedToken;
@@ -25,8 +26,16 @@ exports.user = async (req, res, next) => {
 exports.isAuth = (req,res, next) => {
 
     if(!req.user){
-       return res.redirect('/404')
+       return res.redirect('/user/login')
     }
 
     next();
 }
+
+exports.isGuest = (req, res, next) => {
+   
+    if(req.user){
+        res.redirect('/')
+    }
+        next();
+    };
