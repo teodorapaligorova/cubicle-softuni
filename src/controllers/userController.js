@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const userService = require('../services/userService');
-const { getErrorMessage } = require('../utils/errorMapper')
+const { getErrorMessage } = require('../utils/errorMapper');
 const {sessionName } = require('../config/constants');
 const { body, validationResult } = require('express-validator');
 const usernameLength = 5;
@@ -18,7 +18,7 @@ router.post("/register",
   body("username")
     .isLength({ min: usernameLength })
     .withMessage(`Username must be at least ${usernameLength} characters long`)
-    .isAlphanumeric()
+    .isAlphanumeric(['en-US'],{'ignore':' _-'})
     .withMessage("Username must be numbers and letters only"),
   body("password")
     .isLength({ min: passwordLenght })
