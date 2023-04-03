@@ -19,7 +19,7 @@ body("imageUrl").trim(),
 body("name")
   .isLength({ min: nameLength })
   .withMessage(`Cube name must be at least ${nameLength} characters long`)
-  .isAlphanumeric(['en-US'],{'ignore':' _-'})
+  .isAlphanumeric(['en-US'],{'ignore':' _-`'})
   .withMessage("Cube name must be numbers and letters only"),
 body("description")
   .isLength({ min: minLength, max: maxLength })
@@ -110,6 +110,7 @@ router.get('/:cubeId/edit', isAuth, async(req, res) => {
 
     }catch(error){
         res.locals.errors = getErrorMessage(error);
+        res.render('editCube', { title: 'Edit Cube', cube: req.body});
     }
   
 
@@ -122,7 +123,7 @@ body("imageUrl").trim(),
 body("name")
   .isLength({ min: nameLength })
   .withMessage(`Cube name must be at least ${nameLength} characters long`)
-  .isAlphanumeric(['en-US'],{'ignore':' _-'})
+  .isAlphanumeric(['en-US'],{'ignore':' _-`'})
   .withMessage("Cube name must be numbers and letters only"),
 body("description")
   .isLength({ min: minLength, max: maxLength })
@@ -143,15 +144,15 @@ async (req, res) => {
         res.redirect(`/cube/details/${editedCube._id}`);
     }catch(error){
         res.locals.errors = getErrorMessage(error);
-        res.render('editCube', { title: 'Edit', cube: req.body });
+        res.render('editCube', { title: 'Edit Cube', cube: req.body });
     }
     
 });
 
-router.get('/:cubeId/delete', async(req,res) => {u
+router.get('/:cubeId/delete', async(req,res) => {
     const cube = await cubeService.getOne(req.params.cubeId).lean();
 
-    res.render('cube/delete', { cube });
+    res.render('deleteCube', { cube });
 
 });
 
